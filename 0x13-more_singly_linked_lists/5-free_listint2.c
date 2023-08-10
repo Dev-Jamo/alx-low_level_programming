@@ -5,7 +5,6 @@
  * @head: pointer to the listint_t list that is to be freed
  * 
  * The function sets the head to NULL
- *
  */
 void free_listint2(listint_t **head)
 {
@@ -20,5 +19,6 @@ void free_listint2(listint_t **head)
 		free(*head);
 		*head = temp;
 	}
+
 	*head = NULL;
 }
