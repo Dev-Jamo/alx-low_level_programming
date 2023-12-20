@@ -1,1 +1,38 @@
-906609
+#include <stdio.h>
+#include <stdbool.h>
+
+bool is_palindrome(int n) {
+    int reversed = 0;
+    int original = n;
+    
+    while (n > 0) {
+        reversed = reversed * 10 + n % 10;
+        n /= 10;
+    }
+
+    return original == reversed;
+}
+
+int main(void) {
+    int max_palindrome = 0;
+    
+    for (int i = 999; i >= 100; i--) {
+        for (int j = 999; j >= i; j--) { // Start from i to avoid duplication
+            int product = i * j;
+            if (is_palindrome(product) && product > max_palindrome) {
+                max_palindrome = product;
+            }
+        }
+    }
+
+    printf("%d\n", max_palindrome); // This will print the result to the console
+
+    // Save the result to 102-result file
+    FILE *file = fopen("102-result", "w");
+    if (file != NULL) {
+        fprintf(file, "%d", max_palindrome);
+        fclose(file);
+    }
+
+    return 0;
+}
